@@ -13,9 +13,17 @@ namespace Account.API.Controllers
             return Ok(CustomersDataStore.Instance.Customers);
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        [HttpGet("{id}")]
+        public ActionResult<CustomerDto> GetCity(string id)
+        {
+            var customerToReturn = CustomersDataStore.Instance.Customers.FirstOrDefault(c => c.Id == id);
+
+            if (customerToReturn == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customerToReturn);
+        }
     }
 }
