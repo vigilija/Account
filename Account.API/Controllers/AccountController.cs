@@ -28,6 +28,8 @@ namespace Account.API.Controllers
 
             return Ok(account);
         }
+
+        //create new account for given customerId and balance
         [HttpPost]
         public ActionResult<AccountDto> CreateAccount( string customerId, AccountForCreationDto account)
         {
@@ -48,6 +50,18 @@ namespace Account.API.Controllers
 
             customer.Accounts.Add(newAccount);
 
+            //if initialCredit is > 0 new Transaction is created 
+            if (newAccount.Balance > 0)
+            {
+                newAccount.Transactions.Add(new TransactionDto() 
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Amount = newAccount.Balance,
+                    CreatedDate = DateTime.UtcNow
+                });
+            }
+
+            //show created account
             return CreatedAtRoute("GetAccount",
                  new
                  {

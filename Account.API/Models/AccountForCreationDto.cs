@@ -4,7 +4,7 @@ namespace Account.API.Models
 {
     public class AccountForCreationDto
     {
-        [Required(ErrorMessage = "You should provide a balance value.")]
+        [Required(ErrorMessage = "You should provide a Balance value.")]
         public decimal Balance { get; set; }
     }
 }
