@@ -56,5 +56,6 @@ namespace Account.API.Controllers
                  },
                  newAccount);
         }
+
     }
 }
