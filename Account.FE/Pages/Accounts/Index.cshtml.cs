@@ -25,10 +25,10 @@ namespace Account.FE.Pages.Accounts
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return RedirectToPage("./Error");
             }
 
-            await AccountController.OnGetAsync(Id, Account);
+            var a = await AccountController.OnGetAsync(Id, Account);
 
             return RedirectToPage("/Customers/Index");
         }
