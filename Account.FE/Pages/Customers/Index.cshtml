@@ -10,30 +10,60 @@
 
     <thead>
         <tr>
-            <th>
+            <th style="font-size: 0.75em; width:10%">
                 @Html.DisplayNameFor(model => model.Customers[0].Id)
             </th>
-            <th>
+            <th style="font-size: 0.75em; width:20%">
                 @Html.DisplayNameFor(model => model.Customers[0].Name)
             </th>
-            <th>
+            <th style ="font-size: 0.75em; width:20%">
                 @Html.DisplayNameFor(model => model.Customers[0].Surname)
             </th>
-            <th></th>
+            <th style="font-size: 0.75em; width:10%"></th>
+            <th style="font-size: 0.75em; width:40%">Account</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Customers)
         {
             <tr>
-                <td>
+                <td style="font-size: 0.75em; width:10%">
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
-                <td>
+                <td style="font-size: 0.75em; width:20%">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td style ="font-size: 0.75em; width:20%">
                     @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td style="font-size: 0.75em; width:10%">
+                    <a asp-page="/Accounts/Index" asp-route-id="@item.Id">Add Account</a>
+                </td>
+                <td style ="font-size: 0.75em; width:40%">
+                    <table>                      
+                        @foreach (var account in item.Accounts)
+                        {
+                            <tr>
+                                <td style="font-size: 0.85em;">
+                                    <b> Account: Balance: @Html.DisplayFor(modelItem => account.Balance) </b>
+                                </td>
+                                <td style="font-size: 0.80em;">
+                                    <b> CreatedDate:  @Html.DisplayFor(modelItem => account.CreatedDate) </b>
+                                </td>
+                             </tr>
+                                    @foreach (var transaction in account.Transactions)
+                                    {
+                                        <tr>
+                                            <td style="font-size: 0.75em; text-align:right">
+                                                <b> Transaction: Amount: @Html.DisplayFor(modelItem => transaction.Amount) </b>
+                                            </td>
+                                            <td style="font-size: 0.70em; text-align:left">
+                                                <b> CreatedDate:  @Html.DisplayFor(modelItem => transaction.CreatedDate) </b>
+                                            </td>
+                                        </tr>
+                                    }
+                         }
+                    </table>
                 </td>
             </tr>
         }
