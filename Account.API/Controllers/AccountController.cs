@@ -7,10 +7,16 @@ namespace Account.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly ICustomersDataStore _customersDataStore;
+        public AccountController(ICustomersDataStore customersDataStore)
+        {
+            _customersDataStore = customersDataStore;
+        }
+
         [HttpGet("{accountId}", Name = "GetAccount")]
         public ActionResult<AccountDto> GetAccount(string customerId, string accountId)
         {
-            var customer = CustomersDataStore.Instance.Customers
+            var customer = _customersDataStore.GetAllCustomers()
                 .FirstOrDefault(c => c.Id == customerId);
             if (customer == null)
             {
@@ -33,7 +39,7 @@ namespace Account.API.Controllers
         [HttpPost]
         public ActionResult<AccountDto> CreateAccount( string customerId, AccountForCreationDto account)
         {
-            var customer = CustomersDataStore.Instance.Customers
+            var customer = _customersDataStore.GetAllCustomers()
                 .FirstOrDefault(c => c.Id == customerId);
 
             if (customer == null)

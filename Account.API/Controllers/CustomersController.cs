@@ -7,16 +7,23 @@ namespace Account.API.Controllers
     [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
-        [HttpGet()]
-        public ActionResult<IEnumerable<CustomerDto>> GetCities()
+        private readonly ICustomersDataStore _customersDataStore;
+        public CustomersController(ICustomersDataStore customersDataStore)
         {
-            return Ok(CustomersDataStore.Instance.Customers);
+            _customersDataStore = customersDataStore;
+        }
+
+
+        [HttpGet()]
+        public ActionResult<IEnumerable<CustomerDto>> GetCustomers()
+        {
+            return Ok(_customersDataStore.GetAllCustomers());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CustomerDto> GetCity(string id)
+        public ActionResult<CustomerDto> GetCustomer(string id)
         {
-            var customerToReturn = CustomersDataStore.Instance.Customers.FirstOrDefault(c => c.Id == id);
+            var customerToReturn = _customersDataStore.GetAllCustomers().FirstOrDefault(c => c.Id == id);
 
             if (customerToReturn == null)
             {

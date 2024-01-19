@@ -2,11 +2,9 @@
 
 namespace Account.API
 {
-    public class CustomersDataStore
+    public class CustomersDataStore : ICustomersDataStore
     {
-        public List<CustomerDto> Customers { get; set; }
-
-        public static CustomersDataStore Instance { get; set; } = new CustomersDataStore();
+        private List<CustomerDto> Customers { get; set; }
 
         public CustomersDataStore()
         {
@@ -25,6 +23,11 @@ namespace Account.API
                     Surname = "Lee",
                 }
             };
+        }
+
+        public List<CustomerDto> GetAllCustomers()
+        {
+            return Customers;
         }
     }
 }
