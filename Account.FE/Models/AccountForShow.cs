@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace Account.FE.Models
@@ -7,7 +8,8 @@ namespace Account.FE.Models
     {
         public string? Id { get; set; }
 
-        public decimal Balance { get; set; }
+      //  [DisplayFormat]
+        public double Balance { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? CreatedDate { get; set; }

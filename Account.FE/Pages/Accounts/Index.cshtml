@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Account";
 }
+
+<div style="color:dimgray; text-align:center">
     Customer Id: @Html.DisplayFor(modelItem => Model.CustomerId)
+</div>    
 
 
-<form method="post">
-
+<form method="post" style="text-align:center">
     Initial Credit
     <input asp-for="Account.Balance">
     <input type="submit" />

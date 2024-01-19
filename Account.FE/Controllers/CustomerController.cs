@@ -25,7 +25,7 @@ namespace Account.FE.Controllers
 
                 customers = JsonNet.Deserialize<List<Customer>>(apiResponse);
             }
-            return customers;
+            return customers;//new JsonResult(customers);
         }
     }
 }
