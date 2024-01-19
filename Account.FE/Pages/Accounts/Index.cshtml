@@ -1,0 +1,15 @@
+﻿@page
+@model Account.FE.Pages.Accounts.IndexModel
+@{
+    ViewData["Title"] = "Account";
+}
+    Customer Id: @Html.DisplayFor(modelItem => Model.CustomerId)
+
+
+<form method="post">
+
+    Initial Credit
+    <input asp-for="Account.Balance">
+    <input type="submit" />
+
+</form>

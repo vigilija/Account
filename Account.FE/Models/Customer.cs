@@ -8,6 +8,6 @@ namespace Account.FE.Models
         public string Name { get; set; }
         public string Surname { get; set; }
 
-       
+        public ICollection<AccountForShow> Accounts { get; set; } = new List<AccountForShow>();
     }
 }

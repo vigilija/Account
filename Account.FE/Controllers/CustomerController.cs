@@ -18,13 +18,14 @@ namespace Account.FE.Controllers
 
             using (var httpClient = new HttpClient())
             {
-                using HttpResponseMessage response = await httpClient.GetAsync("https://localhost:7271/api/customers");
+                using HttpResponseMessage response = 
+                    await httpClient.GetAsync("https://localhost:7271/api/customers");
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
 
                 customers = JsonNet.Deserialize<List<Customer>>(apiResponse);
             }
-            return customers;//new JsonResult(customers);
+            return customers;
         }
     }
 }
