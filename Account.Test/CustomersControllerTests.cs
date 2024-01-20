@@ -31,8 +31,8 @@ namespace Account.Test
                     }
                 });
             _internalCustomersController = new CustomersController(customersDataStoreMock.Object);
-
         }
+
         [Fact]
         public void GetCustomerShouldReturnOkObjectResult()
         {
@@ -47,7 +47,7 @@ namespace Account.Test
         }
 
         [Fact]
-        public void GetCustomerShouldReturnCorrectCustomers()
+        public void GetCustomersShouldReturnCorrectCustomers()
         {
             //Arrange
             var customerList = new List<CustomerDto>() {
@@ -64,6 +64,7 @@ namespace Account.Test
                         Surname = "SurnameTest2",
                     }
                 };
+
             //Act
             var resultCustomers = _internalCustomersController.GetCustomers();
             var resultResult = (OkObjectResult)resultCustomers.Result;
@@ -97,6 +98,7 @@ namespace Account.Test
                         Surname = "SurnameTest2",
                     }
                 };
+
             //Act
             var resultCustomers = _internalCustomersController.GetCustomer(customerList.First().Id);
             var resultResult = (OkObjectResult)resultCustomers.Result;
