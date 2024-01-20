@@ -18,7 +18,6 @@ namespace Account.FE.Pages.Accounts
         }
 
         public AccountForShow Account { get; set; }
-
         public string Id { get; set; }
 
         public async Task<IActionResult> OnPost() 
@@ -28,8 +27,7 @@ namespace Account.FE.Pages.Accounts
                 return RedirectToPage("./Error");
             }
 
-            var a = await AccountController.OnGetAsync(Id, Account);
-
+            await AccountController.OnGetAsync(Id, Account);
             return RedirectToPage("/Customers/Index");
         }
     }

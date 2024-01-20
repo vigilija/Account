@@ -4,6 +4,6 @@ namespace Account.API
 {
     public interface ICustomersDataStore
     {
-        List<CustomerDto> GetAllCustomers();
+        public List<CustomerDto> GetAllCustomers();
     }
 }
