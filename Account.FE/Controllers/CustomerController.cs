@@ -7,18 +7,10 @@ namespace Account.FE.Controllers
 {
     public class CustomerController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    var env = Environment.GetEnvironmentVariable("END_POINT_URL");
-        //    Console.WriteLine(env);
-        //    return View();
-        //}
-
         public static async Task<List<Customer>> OnGetAsync()
         {
             var path = Environment.GetEnvironmentVariable("END_POINT_URL")+ "/customers";
-
-            List<Customer> customers = new List<Customer>();
+            List<Customer> customers = [];
 
             using (var httpClient = new HttpClient())
             {
@@ -26,10 +18,9 @@ namespace Account.FE.Controllers
                     await httpClient.GetAsync(path);
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
-
                 customers = JsonNet.Deserialize<List<Customer>>(apiResponse);
             }
-            return customers;//new JsonResult(customers);
+            return customers;
         }
     }
 }
