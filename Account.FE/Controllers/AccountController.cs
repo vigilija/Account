@@ -10,12 +10,16 @@ namespace Account.FE.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    var env = Environment.GetEnvironmentVariable("END_POINT_URL");
+        //    Console.WriteLine(env);
+        //    return View();
+        //}
         public static async Task<List<Models.AccountForShow>> OnGetAsync(string? customerId, Models.AccountForShow accountData)
         {
+            var path = Environment.GetEnvironmentVariable("END_POINT_URL");
+
             List<Models.AccountForShow> accounts = new List<Models.AccountForShow>();
 
             using (var httpClient = new HttpClient())
@@ -25,7 +29,7 @@ namespace Account.FE.Controllers
                 var accountContent = JsonContent.Create(accountObjectForCreation);
 
                 using HttpResponseMessage response = 
-                    await httpClient.PostAsync($"https://localhost:7271/api/customers/{customerId}/account", accountContent);
+                    await httpClient.PostAsync($"{path}/customers/{customerId}/account", accountContent);
                                                  
                 string apiResponse = await response.Content.ReadAsStringAsync();
 
